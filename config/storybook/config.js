@@ -5,7 +5,7 @@ import { registerStories } from 'vue-storybook'
 import { withNotes } from "@storybook/addon-notes";
 import { withKnobs, text, color, select, boolean } from "@storybook/addon-knobs/vue";
 import StoryTemplateDecorator from '../../src/stories/story-template-decorator';
-import { withInfo } from 'storybook-addon-vue-info'
+import { addReadme } from 'storybook-readme/vue';
 // const req = require.context('../../src/stories', true, /.stories.js$/)
 const req = require.context("../../src/components", true, /\.vue$/);
 
@@ -23,11 +23,17 @@ function loadStories() {
         boolean
       },
       decorators: [
+        addReadme,
         withInfo,
         StoryTemplateDecorator  
       ],
       storyOptions: {
-        info: true
+        info: true,
+        readme: {
+          singleFileComponentBlockEnabled: false,
+          displaySidebar: true,
+          displayContent: false
+        }
       }
     }
 
